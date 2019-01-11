@@ -17,6 +17,7 @@ import { fuseConfig } from 'app/fuse-config';
 import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
 import { SampleModule } from 'app/main/sample/sample.module';
+import { DashboardComponent } from './main/app/components/dashboard/dashboard.component';
 
 const appRoutes: Routes = [
     {
@@ -27,7 +28,9 @@ const appRoutes: Routes = [
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        DashboardComponent,
+
     ],
     imports     : [
         BrowserModule,
