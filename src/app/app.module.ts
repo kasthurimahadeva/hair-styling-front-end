@@ -2,9 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule, Routes } from '@angular/router';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
-import { MatButtonModule, MatIconModule } from '@angular/material';
+import {MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatIconModule, MatInputModule} from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import 'hammerjs';
 
@@ -18,26 +17,20 @@ import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
 import { SampleModule } from 'app/main/sample/sample.module';
 import { DashboardComponent } from './main/app/components/dashboard/dashboard.component';
-
-const appRoutes: Routes = [
-    {
-        path      : '**',
-        redirectTo: 'sample'
-    }
-];
+import {AppRoutingModule} from './main/app/routing/app-routing.module';
+import { LoginComponent } from './main/app/components/login/login.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         DashboardComponent,
+        LoginComponent,
 
     ],
     imports     : [
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
-        RouterModule.forRoot(appRoutes),
-
         TranslateModule.forRoot(),
 
         // Material moment date module
@@ -56,7 +49,14 @@ const appRoutes: Routes = [
 
         // App modules
         LayoutModule,
-        SampleModule
+        SampleModule,
+        AppRoutingModule,
+        MatButtonModule,
+        MatCheckboxModule,
+        MatFormFieldModule,
+        MatInputModule,
+
+        FuseSharedModule
     ],
     bootstrap   : [
         AppComponent
