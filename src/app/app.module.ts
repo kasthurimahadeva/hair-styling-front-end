@@ -19,6 +19,7 @@ import { SampleModule } from 'app/main/sample/sample.module';
 import { DashboardComponent } from './main/app/components/dashboard/dashboard.component';
 import {AppRoutingModule} from './main/app/routing/app-routing.module';
 import { LoginComponent } from './main/app/components/login/login.component';
+import {ToolbarsModule} from './main/app/modules/toolbars/toolbars.module';
 
 @NgModule({
     declarations: [
@@ -56,7 +57,9 @@ import { LoginComponent } from './main/app/components/login/login.component';
         MatFormFieldModule,
         MatInputModule,
 
-        FuseSharedModule
+        FuseSharedModule,
+
+        ToolbarsModule
     ],
     bootstrap   : [
         AppComponent
