@@ -12,6 +12,10 @@ const appRoutes: Routes = [
         path: '',
         component: DashboardComponent,
         pathMatch: 'full'
+    },
+    {
+        path: 'login',
+        component: LoginComponent
     }
 ];
 
