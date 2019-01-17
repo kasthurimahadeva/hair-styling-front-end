@@ -5,7 +5,7 @@ login {
     #login {
         width: 100%;
         overflow: hidden;
-        background: url('/assets/images/backgrounds/dark-material-bg.jpg') no-repeat;
+        background: url('/assets/images/backgrounds/login.jpg') no-repeat;
         background-size: cover;
 
         #login-intro {
@@ -34,9 +34,9 @@ login {
         }
 
         #login-form-wrapper {
-            width: 400px;
-            min-width: 400px;
-            max-width: 400px;
+            width: 620px;
+            min-width: 620px;
+            max-width: 620px;
             overflow: auto;
             -webkit-overflow-scrolling: touch;
 
