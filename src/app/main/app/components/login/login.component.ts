@@ -5,6 +5,8 @@ import { FuseConfigService } from '@fuse/services/config.service';
 import { fuseAnimations } from '@fuse/animations/index';
 import { Router, ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
+import {MatDialog} from '@angular/material';
+import {SignupDialogComponent} from '../../modules/signup/signup-dialog/signup-dialog.component';
 
 @Component({
     selector: 'login',
@@ -22,6 +24,7 @@ export class LoginComponent implements OnInit {
         private _formBuilder: FormBuilder,
         private router: Router,
         private route: ActivatedRoute,
+        public dialog: MatDialog
         // private authService: AuthenticationService
     ) {
         // Configure the layout
@@ -67,7 +70,14 @@ export class LoginComponent implements OnInit {
         };
     }
 
-    login() {
+    openSignupDialog(): void {
+        const dialogRef = this.dialog.open(SignupDialogComponent, {width: '800px', height: '400px'});
+        dialogRef.afterClosed().subscribe(result => {
+            console.log(result);
+        });
+    }
+
+    login(): void {
         // this.authService
         //     .authenticate({
         //             username: this.loginForm.controls['userName'].value,

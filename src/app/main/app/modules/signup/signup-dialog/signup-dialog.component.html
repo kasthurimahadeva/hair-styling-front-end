@@ -1,0 +1,13 @@
+<mat-dialog-content>
+    <form fxLayout="column" [formGroup]="signupDialogForm">
+        <div fxFlex="1 0 auto" fxLayout="column">
+
+            <mat-radio-group class="userType" formControlName="userType" required>
+                <div class="h3"><mat-label>I am a....</mat-label></div>
+                <mat-radio-button class="userTypesButton" *ngFor="let type of types" [value]="type" required>
+                    {{type}}
+                </mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </form>
+</mat-dialog-content>

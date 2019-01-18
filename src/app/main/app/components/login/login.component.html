@@ -83,7 +83,7 @@
 
             <div class="register" fxLayout="column" fxLayoutAlign="center center">
                 <span class="text">Don't have an account?</span>
-                <a class="link" [routerLink]="'/pages/auth/register-2'">Create an account</a>
+                <button mat-raised-button (click)="openSignupDialog()">Create an account</button>
             </div>
         </div>
     </div>
