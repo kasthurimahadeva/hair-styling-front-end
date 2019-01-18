@@ -1,9 +1,16 @@
-<mat-toolbar color = "primary">
+<!-- <mat-toolbar color = "primary">
     <span><img src="assets/images/logos/logo.png" width="50px" height="50px"></span>
-    <span>Hair Styling</span>
-  
+    <span>Hair Styling</span>-->
+
     <!-- This fills the remaining space of the current row -->
-    <span class="example-fill-remaining-space"></span>
-  
+    <!-- <span class="example-fill-remaining-space"></span>
+
     <span>Right Aligned Text</span>
-  </mat-toolbar>
+  </mat-toolbar> -->
+
+  <ul>
+    <li id="logo" class="left"><img src="assets/images/logos/logo.png" width="50px" height="50px"></li>
+    <li class="left"><a [routerLink]="['/']" id="title">Hair Styling</a></li>
+    <li class="right"><button mat-flat-button>SignUp</button></li>
+    <li class="right"><button mat-flat-button [routerLink]="'login'">SignIn</button></li>
+  </ul>
