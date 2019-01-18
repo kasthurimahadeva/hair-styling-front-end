@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
-import {MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatIconModule, MatInputModule} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule} from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import 'hammerjs';
 
@@ -20,6 +20,7 @@ import { DashboardComponent } from './main/app/components/dashboard/dashboard.co
 import {AppRoutingModule} from './main/app/routing/app-routing.module';
 import { LoginComponent } from './main/app/components/login/login.component';
 import {ToolbarsModule} from './main/app/modules/toolbars/toolbars.module';
+import {SignupModule} from './main/app/modules/signup/signup.module';
 
 @NgModule({
     declarations: [
@@ -56,10 +57,12 @@ import {ToolbarsModule} from './main/app/modules/toolbars/toolbars.module';
         MatCheckboxModule,
         MatFormFieldModule,
         MatInputModule,
+        MatDialogModule,
 
         FuseSharedModule,
 
-        ToolbarsModule
+        ToolbarsModule,
+        SignupModule
     ],
     bootstrap   : [
         AppComponent
