@@ -21,14 +21,7 @@
 </div>
 
 <mat-dialog-actions class="actions">
-    <div *ngIf="userType === 'Salon'">
-        <button mat-raised-button color="accent" [disabled]="signupDialogForm.invalid" [routerLink]="'salon-signup'" (click)="closeDialog()">SignUp</button>
-    </div>
-
-    <div *ngIf="userType === 'Stylist'">
-        <button mat-raised-button color="accent" [disabled]="signupDialogForm.invalid" [routerLink]="'stylist-signup'" (click)="closeDialog()">SignUp</button>
-    </div>
-
+    <button mat-raised-button color="accent" [disabled]="signupDialogForm.invalid" (click)="closeDialog()">SignUp</button>
     <button mat-button mat-dialog-close>Cancel</button>
 </mat-dialog-actions>
 

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialogRef} from '@angular/material';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup-dialog',
@@ -10,7 +11,8 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 export class SignupDialogComponent implements OnInit {
 
     constructor(public dialogRef: MatDialogRef<SignupDialogComponent>,
-                private _formBuilder: FormBuilder) {
+                private _formBuilder: FormBuilder,
+                private router: Router) {
     }
 
     types: string[] = ['Salon', 'Stylist'];
@@ -19,6 +21,15 @@ export class SignupDialogComponent implements OnInit {
 
     closeDialog(): void {
         this.dialogRef.close(this.userType);
+        this.dialogRef.afterClosed().subscribe(result => {
+            console.log(result);
+            if (result === 'Salon') {
+                this.router.navigate(['salon-signup']);
+            }
+            else if (result === 'Stylist') {
+                this.router.navigate(['stylist-signup']);
+            }
+        });
     }
 
     ngOnInit(): void {
