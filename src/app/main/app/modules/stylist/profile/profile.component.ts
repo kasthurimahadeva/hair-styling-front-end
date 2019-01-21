@@ -6,6 +6,8 @@ import { fuseAnimations } from '@fuse/animations';
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    animations   : fuseAnimations
 
 })
 export class ProfileComponent implements OnInit {
