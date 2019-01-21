@@ -71,7 +71,7 @@ export class LoginComponent implements OnInit {
     }
 
     openSignupDialog(): void {
-        const dialogRef = this.dialog.open(SignupDialogComponent, {width: '800px', height: '400px'});
+        const dialogRef = this.dialog.open(SignupDialogComponent, {width: '500px', height: '175px'});
         dialogRef.afterClosed().subscribe(result => {
             console.log(result);
         });

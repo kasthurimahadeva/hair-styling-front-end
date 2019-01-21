@@ -1,21 +1,6 @@
 <div id="login" class="inner-scroll" fxLayout="row" fxLayoutAlign="start">
 
     <div id="login-intro" fxFlex fxHide fxShow.gt-xs>
-
-        <!-- <div class="logo" [@animate]="{value:'*',params:{scale:'0.2'}}" style="width: 100px; height: 100px">
-            <img src="assets/images/logos/logo.png">
-        </div>
-
-        <div class="mat-display-2" [@animate]="{value:'*',params:{delay:'50ms',y:'25px'}}">Welcome to the iworkflows!
-            <div class="mat-title" [@animate]="{value:'*',params:{delay:'100ms',y:'25px'}}">
-                An integration middleware for end-to-end workflow automation, specially for heterogeneous environment. Login, connect and enjoy the automation.
-            </div>
-            <div class="mat-display-1">Things grow stronger
-                <span class="mat-headline">when you
-                <span class="mat-display-3">integrate! </span>
-            </span>
-            </div>
-        </div> -->
     </div>
 
     <div id="login-form-wrapper" fusePerfectScrollbar
@@ -24,7 +9,7 @@
         <div id="login-form">
 
             <div class="logo" fxHide.gt-xs>
-                <img src="assets/images/logos/logo.svg">
+                <img src="assets/images/logos/logo.png">
             </div>
 
             <div class="title">LOGIN TO YOUR ACCOUNT</div>
@@ -65,25 +50,9 @@
 
             </form>
 
-            <div class="separator">
-                <span class="text">OR</span>
-            </div>
-
-            <div fxLayout="column" fxLayoutAlign="start center">
-
-                <button mat-raised-button class="google">
-                    Log in with Google
-                </button>
-
-                <button mat-raised-button class="facebook">
-                    Log in with Facebook
-                </button>
-
-            </div>
-
             <div class="register" fxLayout="column" fxLayoutAlign="center center">
                 <span class="text">Don't have an account?</span>
-                <button mat-raised-button (click)="openSignupDialog()">Create an account</button>
+                <button mat-raised-button color="accent" id = "signupButton"(click)="openSignupDialog()">Create an account</button>
             </div>
         </div>
     </div>
