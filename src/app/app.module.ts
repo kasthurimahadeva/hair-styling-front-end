@@ -21,6 +21,7 @@ import {AppRoutingModule} from './main/app/routing/app-routing.module';
 import { LoginComponent } from './main/app/components/login/login.component';
 import {ToolbarsModule} from './main/app/modules/toolbars/toolbars.module';
 import {SignupModule} from './main/app/modules/signup/signup.module';
+import {StylistModule} from './main/app/modules/stylist/stylist.module';
 
 @NgModule({
     declarations: [
@@ -62,7 +63,8 @@ import {SignupModule} from './main/app/modules/signup/signup.module';
         FuseSharedModule,
 
         ToolbarsModule,
-        SignupModule
+        SignupModule,
+        StylistModule
     ],
     bootstrap   : [
         AppComponent
