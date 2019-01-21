@@ -1,3 +1,10 @@
+.simple {
+    width: 100%;
+    overflow: hidden;
+    background: url('/assets/images/backgrounds/dark-material-bg.jpg') no-repeat;
+    background-size: cover;
+}
+
 .logo {
     margin: 1px 5px 5px 5px;
 }
@@ -18,3 +25,4 @@
     margin-left: 20px;
     margin-bottom: 10px;
 }
+

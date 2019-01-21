@@ -4,7 +4,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FuseConfigService } from '@fuse/services/config.service';
 import { fuseAnimations } from '@fuse/animations/index';
 import { Router, ActivatedRoute } from '@angular/router';
-import { first } from 'rxjs/operators';
 import {MatDialog} from '@angular/material';
 import {SignupDialogComponent} from '../../modules/signup/signup-dialog/signup-dialog.component';
 
@@ -71,9 +70,15 @@ export class LoginComponent implements OnInit {
     }
 
     openSignupDialog(): void {
-        const dialogRef = this.dialog.open(SignupDialogComponent, {width: '500px', height: '175px'});
+        const dialogRef = this.dialog.open(SignupDialogComponent, {width: '500px', height: '200px'});
         dialogRef.afterClosed().subscribe(result => {
             console.log(result);
+            if (result === 'Salon') {
+                this.router.navigate(['salon-signup']);
+            }
+            else if (result === 'Stylist') {
+                this.router.navigate(['stylist-signup']);
+            }
         });
     }
 
