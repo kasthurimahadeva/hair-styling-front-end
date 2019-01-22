@@ -1,0 +1,83 @@
+@import "src/@fuse/scss/fuse";
+.content {
+
+    .cards {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        .card {
+            display: flex;
+            align-items: flex-start;
+            padding: 24px 24px 48px 24px;
+            margin-bottom: 96px;
+
+            .card-preview {
+                display: flex;
+                min-width: 320px;
+            
+                .fuse-card {
+                    margin-left: 20px;
+                    margin-top: 20px;
+                    margin-bottom: 20px;
+                    min-width: 300px;
+
+
+                    .profile {
+                        width: 300px;
+                        height: 300px;
+                        margin-left: 10px;
+                        margin-top: 10px;
+                    }
+
+                    .description {
+                        margin: 10px 10px 10px 10px;
+                    }
+
+                    .contact {
+                        margin-left: 10px;
+                    }
+
+                    .line {
+                        margin: 20px 10px 20px 10px;
+                    }
+
+                    .skills {
+                        margin-left: 10px;
+                    }
+
+                    .payment {
+                        h2 {
+                            margin-left: 20px;
+                        }
+                        table {
+                            width: 80%;
+                            margin-left: 25px;
+                            border-collapse: collapse;
+                        }
+                        
+                        th, td{
+                            text-align: center;
+                            padding: 6px;
+                            border: 1px solid #ccc;
+                        }
+                    }
+
+                    .experience {
+                        min-width: 300px;
+                        max-height: 350px;
+                    }
+
+                }
+
+                .comments {
+                    min-width: 400px;
+                }
+
+                
+            }
+        }
+    }
+}

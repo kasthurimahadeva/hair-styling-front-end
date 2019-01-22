@@ -6,9 +6,13 @@ import { fuseAnimations } from '@fuse/animations';
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    animations   : fuseAnimations
 
 })
 export class ProfileComponent implements OnInit {
+    skills = ['Skill1', 'Skill2', 'Skill3', 'Skill4'];
+    comments = [{'name': 'xxxxx', 'content': 'xxxxxxxxxxxxxx'}, {'name': 'xxxxxxxxxxx', 'content': 'xxxxxxxxxxxxxxxxxxxxxxxxxx'}];
 
   constructor(private _fuseConfigService: FuseConfigService) {
       this.hideComponents();
