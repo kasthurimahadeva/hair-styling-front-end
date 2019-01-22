@@ -23,20 +23,13 @@ export class LoginComponent implements OnInit {
         private _formBuilder: FormBuilder,
         private router: Router,
         private route: ActivatedRoute,
-        public dialog: MatDialog
+        public dialog: MatDialog,
         // private authService: AuthenticationService
     ) {
         // Configure the layout
         this.hideComponents();
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Lifecycle hooks
-    // -----------------------------------------------------------------------------------------------------
-
-    /**
-     * On init
-     */
     ngOnInit(): void {
         // this.authService.logout();
 
