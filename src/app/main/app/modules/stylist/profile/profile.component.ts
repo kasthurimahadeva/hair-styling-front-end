@@ -11,6 +11,8 @@ import { fuseAnimations } from '@fuse/animations';
 
 })
 export class ProfileComponent implements OnInit {
+    skills = ['Skill1', 'Skill2', 'Skill3', 'Skill4'];
+    comments = [{'name': 'xxxxx', 'content': 'xxxxxxxxxxxxxx'}, {'name': 'xxxxxxxxxxx', 'content': 'xxxxxxxxxxxxxxxxxxxxxxxxxx'}];
 
   constructor(private _fuseConfigService: FuseConfigService) {
       this.hideComponents();

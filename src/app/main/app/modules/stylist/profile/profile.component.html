@@ -1,26 +1,183 @@
-<div id="profile" class="page-layout simple tabbed">
+<div id="profile" class="page-layout simple fullwidth" fxLayout="column">
 
-    <div class="header p-24" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-sm="row"
-         fxLayoutAlign.gt-sm="space-between end">
-
-        <div class="user-info" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-sm="row"
-             fxLayoutAlign.gt-sm="center center">
-            <img class="profile-image avatar huge" src="assets/images/avatars/garry.jpg"
-                 [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
-            <div class="name" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
-                Stylist
+    <!-- HEADER -->
+    <div class="header accent p-24 h-80" fxLayout="row" fxLayoutAlign="center start">
+        <div fxLayout="row">
+            <div class="logo">
+                <img src="assets/images/logos/logo.png" style="width: 50px; height: 50px; margin-right: 20px;">
             </div>
-            <div>
-                <star-rating-comp [starType]="'icon'" [rating]="3"></star-rating-comp>
-            </div>
+            <div class="mat-display-1">Profile Settings</div>
         </div>
-
-        <div class="actions" fxLayout="row" fxLayoutAlign="end center" [@animate]="{value:'*',params:{delay:'200ms'}}">
-            <button mat-raised-button color="accent" aria-label="Follow">Edit</button>
-        </div>
-
     </div>
 
+    <div class="content" [ngClass]="this.view">
 
+        <div class="cards">
 
+            <!-- CARD 1 -->
+            <div class="card">
+
+                <!-- PREVIEW -->
+                <div class="card-preview">
+
+                    <div class="fuse-card">
+                        <img src="assets/images/avatars/garry.jpg" class="profile">
+
+                        <div class="p-16">
+                            <div class="h1">Stylist</div>
+                        </div>
+
+                        <hr class="line">
+
+                        <div class="description">
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                            Aliquid consequuntur mollitia nihil, reprehenderit optio velit
+                            aspernatur quis deleniti modi incidunt! Accusantium ipsa nulla
+                            repellat itaque blanditiis enim atque libero quo!
+                        </div>
+
+                        <hr class="line">
+
+                        <div class="contact">
+
+                            <table>
+                                <tr>
+                                    <td><mat-icon>email</mat-icon></td>
+                                    <td>stylist@gmail.com</td>
+                                </tr>
+                                <tr>
+                                    <td><mat-icon>location_on</mat-icon></td>
+                                    <td>location</td>
+                                </tr>
+                                <tr>
+                                    <td><mat-icon>phone_iphone</mat-icon></td>
+                                    <td>Phone number</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="fuse-card">
+                        <div class="skills">
+                            <mat-list>
+                                <h2>Skills</h2>
+                                <mat-list-item *ngFor="let skill of skills">
+                                    <mat-icon mat-list-icon>stars</mat-icon>
+                                    <h6 mat-line>{{skill}}</h6>
+                                </mat-list-item>
+                            </mat-list>
+                        </div>
+
+                        <hr class="line">
+
+                        <div class="payment">
+                            <h2>Payment Details</h2>
+                            <table>
+                                <tr>
+                                    <td><h3>Rate / day</h3></td>
+                                    <td>XXXXXX</td>
+                                </tr>
+                                <tr>
+                                    <td><h3>Bank Name</h3></td>
+                                    <td>XXXXXX</td>
+                                </tr>
+                                <tr>
+                                    <td><h3>Branch</h3></td>
+                                    <td>XXXXXXX</td>
+                                </tr>
+                                <tr>
+                                    <td><h3>Name</h3></td>
+                                    <td>XXXXXXXX</td>
+                                </tr>
+                                <tr>
+                                    <td><h3>Account No</h3></td>
+                                    <td>XXXXXXXX</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="fuse-card">
+                        <div class="experience">
+                            <img src="assets/images/hair-styles/1.jpg">
+
+                            <div class="p-16">
+                                <div class="h1">Kangaroo Valley Safari</div>
+                                <div class="h4 secondary-text">Free on Thursdays</div>
+                            </div>
+    
+                            <div class="p-16 pt-0 line-height-1.75">
+                                Cards provide context and an entry point to more robust information and views, and their
+                                content and quantity can vary greatly.
+                            </div>
+                        </div>
+
+                        <hr class="line">
+
+                        <div class="experience">
+
+                            <img src="assets/images/hair-styles/2.jpg">
+    
+                            <div class="p-16">
+                                <div class="h1">Kangaroo Valley Safari</div>
+                                <div class="h4 secondary-text">Free on Thursdays</div>
+                            </div>
+    
+                            <div class="p-16 pt-0 line-height-1.75">
+                                Cards provide context and an entry point to more robust information and views, and their
+                                content and quantity can vary greatly.
+                            </div>
+    
+                        </div>
+                    </div>
+
+                    <div class="fuse-card">
+                        <div class="experience">
+                            <img src="assets/images/hair-styles/3.jpg">
+
+                            <div class="p-16">
+                                <div class="h1">Kangaroo Valley Safari</div>
+                                <div class="h4 secondary-text">Free on Thursdays</div>
+                            </div>
+    
+                            <div class="p-16 pt-0 line-height-1.75">
+                                Cards provide context and an entry point to more robust information and views, and their
+                                content and quantity can vary greatly.
+                            </div>
+                        </div>
+
+                        <hr class="line">
+
+                        <div class="experience">
+
+                            <img src="assets/images/hair-styles/4.jpg">
+    
+                            <div class="p-16">
+                                <div class="h1">Kangaroo Valley Safari</div>
+                                <div class="h4 secondary-text">Free on Thursdays</div>
+                            </div>
+    
+                            <div class="p-16 pt-0 line-height-1.75">
+                                Cards provide context and an entry point to more robust information and views, and their
+                                content and quantity can vary greatly.
+                            </div>
+    
+                        </div>
+                    </div>
+
+                    <div class="fuse-card comments">
+                            <mat-list>
+                                <h1 mat-subheader>Comments</h1>
+                                <mat-list-item *ngFor="let comment of comments">
+                                    <mat-icon mat-list-icon>comment</mat-icon>
+                                    <h3 mat-line>{{comment.name}}</h3>
+                                    <p mat-line> {{comment.content}} </p>
+                                    <hr class="line">
+                                </mat-list-item>
+                            </mat-list>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
