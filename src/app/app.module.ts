@@ -22,6 +22,7 @@ import { LoginComponent } from './main/app/components/login/login.component';
 import {ToolbarsModule} from './main/app/modules/toolbars/toolbars.module';
 import {SignupModule} from './main/app/modules/signup/signup.module';
 import {StylistModule} from './main/app/modules/stylist/stylist.module';
+import {SalonModule} from './main/app/modules/salon/salon.module';
 
 @NgModule({
     declarations: [
@@ -64,7 +65,8 @@ import {StylistModule} from './main/app/modules/stylist/stylist.module';
 
         ToolbarsModule,
         SignupModule,
-        StylistModule
+        StylistModule,
+        SalonModule
     ],
     bootstrap   : [
         AppComponent
