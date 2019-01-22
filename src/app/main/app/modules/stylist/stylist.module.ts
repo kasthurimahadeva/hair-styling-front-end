@@ -9,6 +9,7 @@ import {FuseSharedModule} from '../../../../../@fuse/shared.module';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import { StarRatingModule } from 'angular-star-rating';
+import { RequestListDetailsComponent } from './request-list-details/request-list-details.component';
 
 @NgModule({
   imports: [
@@ -29,6 +30,6 @@ import { StarRatingModule } from 'angular-star-rating';
 
       FuseSharedModule
   ],
-  declarations: [ProfileComponent, RequestListComponent]
+  declarations: [ProfileComponent, RequestListComponent, RequestListDetailsComponent]
 })
 export class StylistModule { }
