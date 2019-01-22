@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {FuseConfigService} from '../../../../../../@fuse/services/config.service';
 import { Router } from '@angular/router';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'app-salon-signup',
@@ -17,7 +19,8 @@ export class SalonSignupComponent implements OnInit {
 
   constructor(private _fuseConfigService: FuseConfigService,
     private _formBuilder: FormBuilder,
-    private router: Router) {
+    private router: Router,
+    private httpClient: HttpClient) {
       this.hideComponents();
   }
 
@@ -68,7 +71,25 @@ export class SalonSignupComponent implements OnInit {
     }
 
     public submitForm(): void {
-        console.log(this.personalInfoForm.value);
+        const salonData = Object.assign(this.personalInfoForm.value, this.paymentInfoForm.value);
+        console.log(JSON.stringify(salonData));
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json'
+        });
+
+            this.httpClient.post(environment.server + 'v1/salons/', salonData, {headers: headers, observe: 'response'}).subscribe(
+                response => {
+                    if (response.status === 200) {
+                        console.log('Success');
+                        // this.toastr.success('Leave request submitted', 'Success', {progressBar: true, progressAnimation: 'increasing'});
+                    }
+                },
+                error => {
+                    console.error(error);
+                    // this.toastr.error('Could not submit the leave request', 'Failed');
+                }
+            );
+
         this.router.navigate(['login']);
     }
 
