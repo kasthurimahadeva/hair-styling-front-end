@@ -4,6 +4,7 @@ import {FuseConfigService} from '../../../../../../@fuse/services/config.service
 import { Router } from '@angular/router';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { environment } from 'environments/environment';
+import { SalonService } from 'app/main/app/services/salon-service.service';
 
 @Component({
   selector: 'app-salon-signup',
@@ -11,27 +12,33 @@ import { environment } from 'environments/environment';
   styleUrls: ['./salon-signup.component.scss']
 })
 export class SalonSignupComponent implements OnInit {
+    accountDetailsForm: FormGroup;
     personalInfoForm: FormGroup;
     paymentInfoForm: FormGroup;
     types = ['Male', 'Female'];
     countries = ['Sri Lanka', 'India'];
+    cards = ['debit', 'visa'];
     skills = ['skill1', 'skill2', 'skill3'];
 
   constructor(private _fuseConfigService: FuseConfigService,
     private _formBuilder: FormBuilder,
     private router: Router,
-    private httpClient: HttpClient) {
+    private httpClient: HttpClient,
+    private salonService: SalonService) {
       this.hideComponents();
   }
 
   ngOnInit(): void {
       this.hideComponents();
-      this.personalInfoForm = this._formBuilder.group({
-        salonName: ['', Validators.required],
-        ownerName: ['', Validators.required],
+      this.accountDetailsForm = this._formBuilder.group({
         email: ['', [Validators.required, Validators.email]],
         password: ['', Validators.required],
         confirmPassword: ['', Validators.required],
+      });
+
+      this.personalInfoForm = this._formBuilder.group({
+        salonName: ['', Validators.required],
+        ownerName: ['', Validators.required],
         country: ['', Validators.required],
         state: ['', Validators.required],
         city: ['', Validators.required],
@@ -44,10 +51,12 @@ export class SalonSignupComponent implements OnInit {
     });
 
     this.paymentInfoForm = this._formBuilder.group({
-        name: ['', Validators.required],
-        bankName: ['', Validators.required],
-        branch: ['',  Validators.required],
-        accountNo: ['', Validators.required]
+        cardType: ['', Validators.required],
+        cardHolderName: ['', Validators.required],
+        cardNo: ['',  Validators.required],
+        cardYear: ['', Validators.required],
+        cardMonth: ['', Validators.required],
+        cvcCode: ['', Validators.required]
     });
   }
 
@@ -71,13 +80,28 @@ export class SalonSignupComponent implements OnInit {
     }
 
     public submitForm(): void {
-        const salonData = Object.assign(this.personalInfoForm.value, this.paymentInfoForm.value);
+        const salonData = this.personalInfoForm.value;
         console.log(JSON.stringify(salonData));
         const headers = new HttpHeaders({
             'Content-Type': 'application/json'
         });
 
-            this.httpClient.post(environment.server + 'v1/salons/', salonData, {headers: headers, observe: 'response'}).subscribe(
+            // const url = environment.server + 'salons/';
+            // console.log(url);
+            // this.httpClient.post(url, salonData, {headers: headers, observe: 'response'}).subscribe(
+            //     response => {
+            //         if (response.status === 200) {
+            //             console.log('Success');
+            //             // this.toastr.success('Leave request submitted', 'Success', {progressBar: true, progressAnimation: 'increasing'});
+            //         }
+            //     },
+            //     error => {
+            //         console.error(error);
+            //         // this.toastr.error('Could not submit the leave request', 'Failed');
+            //     }
+            // );
+
+            this.salonService.registerSalon(salonData).subscribe(
                 response => {
                     if (response.status === 200) {
                         console.log('Success');
