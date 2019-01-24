@@ -6,6 +6,7 @@ import { fuseAnimations } from '@fuse/animations/index';
 import { Router, ActivatedRoute } from '@angular/router';
 import {MatDialog} from '@angular/material';
 import {SignupDialogComponent} from '../../modules/signup/signup-dialog/signup-dialog.component';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
     selector: 'login',
@@ -24,7 +25,7 @@ export class LoginComponent implements OnInit {
         private router: Router,
         private route: ActivatedRoute,
         public dialog: MatDialog,
-        // private authService: AuthenticationService
+        private authService: AuthenticationService
     ) {
         // Configure the layout
         this.hideComponents();
@@ -76,15 +77,14 @@ export class LoginComponent implements OnInit {
     }
 
     login(): void {
-        // this.authService
-        //     .authenticate({
-        //             username: this.loginForm.controls['userName'].value,
-        //             password: this.loginForm.controls['password'].value
-        //         }
-        //         , () => {
-        //             console.log('logged in successfully');
-        //             this.router.navigate(['dashboard']);
-        //         });
-        // return false;
+        this.authService
+            .authenticate({
+                    username: this.loginForm.controls['userName'].value,
+                    password: this.loginForm.controls['password'].value
+                }
+                , () => {
+                    console.log('logged in successfully');
+                    this.router.navigate(['dashboard']);
+                });
     }
 }

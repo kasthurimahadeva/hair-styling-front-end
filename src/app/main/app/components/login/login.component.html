@@ -44,7 +44,7 @@
                 </div>
 
                 <button mat-raised-button color="accent" class="submit-button" aria-label="LOGIN"
-                        [disabled]="loginForm.invalid" type="submit">
+                        [disabled]="loginForm.invalid" type="submit" (click)="login()">
                     LOGIN
                 </button>
 

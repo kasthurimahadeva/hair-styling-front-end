@@ -24,6 +24,7 @@ import {SignupModule} from './main/app/modules/signup/signup.module';
 import {StylistModule} from './main/app/modules/stylist/stylist.module';
 import {SalonModule} from './main/app/modules/salon/salon.module';
 import { SalonService } from './main/app/services/salon-service.service';
+import { AuthenticationService } from './main/app/services/authentication.service';
 
 @NgModule({
     declarations: [
@@ -73,7 +74,8 @@ import { SalonService } from './main/app/services/salon-service.service';
         AppComponent
     ],
     providers: [
-        SalonService
+        SalonService,
+        AuthenticationService
     ]
 })
 export class AppModule
