@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Injectable } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import {MatButtonModule, MatCheckboxModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule} from '@angular/material';
@@ -25,6 +25,18 @@ import {StylistModule} from './main/app/modules/stylist/stylist.module';
 import {SalonModule} from './main/app/modules/salon/salon.module';
 import { SalonService } from './main/app/services/salon-service.service';
 import { AuthenticationService } from './main/app/services/authentication.service';
+import { BasicAuthInterceptor } from './main/app/interceptor/login.interceptor';
+import { Observable } from 'rxjs';
+
+@Injectable()
+export class XhrInterceptor implements HttpInterceptor {
+    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        const xhr = req.clone({
+            headers: req.headers.set('X-Requested-With', 'XMLHttpRequest')
+        });
+        return next.handle(xhr);
+    }
+}
 
 @NgModule({
     declarations: [
@@ -75,7 +87,18 @@ import { AuthenticationService } from './main/app/services/authentication.servic
     ],
     providers: [
         SalonService,
-        AuthenticationService
+        AuthenticationService,
+        {
+
+            provide: HTTP_INTERCEPTORS,
+            useClass: BasicAuthInterceptor,
+            multi: true
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: XhrInterceptor,
+            multi: true
+        },
     ]
 })
 export class AppModule

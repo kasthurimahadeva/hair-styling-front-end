@@ -18,13 +18,14 @@ export class AuthenticationService {
         const headers = new HttpHeaders(
             credentials
                 ? {
-                      authorization:
+                    authorization:
+                        // `Basic ${btoa(`${credentials.username} : ${credentials.password}`)}`
                           'Basic ' + btoa(credentials.username + ':' + credentials.password)
                   }
                 : {}
         );
 
-        this.http.get<any>('/api/v1/user', { headers: headers }).subscribe(
+        this.http.get<any>('/api/auth/v1/user', { headers: headers }).subscribe(
             response => {
                 console.log(JSON.stringify(response));
                 if (response['name']) {

@@ -5,7 +5,7 @@
     "logLevel": "debug"
   },
 
-  "/api/v1/user/*": {
+  "/api/auth/v1/*": {
     "target": "http://localhost:8081",
     "secure": false,
     "logLevel": "debug"
