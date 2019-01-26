@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FuseConfigService} from '../../../../../../@fuse/services/config.service';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
+import {HttpHeaders} from '@angular/common/http';
+import {StylistService} from '../../../services/stylist-service.service';
 
 @Component({
   selector: 'app-stylist-signup',
@@ -14,19 +16,14 @@ export class StylistSignupComponent implements OnInit {
     paymentInfoForm: FormGroup;
     types = ['Male', 'Female'];
     countries = ['Sri Lanka', 'India'];
-    skills = ['skill1', 'skill2', 'skill3'];
+    skills = ['Hair coloring', 'Hair cutting', 'Bob cut', 'Ponytail'];
 
 
   constructor(private _fuseConfigService: FuseConfigService,
               private _formBuilder: FormBuilder,
-              private router: Router) {
+              private router: Router,
+              private stylistService: StylistService) {
       this.hideComponents();
-      const controls = this.skills.map(a => new FormControl(false));
-      controls[0].setValue(true);
-
-      this.professionalInfoForm = this._formBuilder.group({
-          skills: new FormArray(controls)
-      });
 
   }
 
@@ -35,15 +32,12 @@ export class StylistSignupComponent implements OnInit {
       this.personalInfoForm = this._formBuilder.group({
           firstName: ['', Validators.required],
           lastName: ['', Validators.required],
-          email: ['', [Validators.required, Validators.email]],
-          password: ['', Validators.required],
-          confirmPassword: ['', Validators.required],
           country: ['', Validators.required],
           state: ['', Validators.required],
           city: ['', Validators.required],
           street: ['', Validators.required],
           zip: ['', Validators.required],
-          telephoneNo: ['', Validators.required],
+          telephoneNumber: ['', Validators.required],
 
       });
 
@@ -51,8 +45,9 @@ export class StylistSignupComponent implements OnInit {
           tagLine: ['', Validators.required],
           description: ['', Validators.required],
           experience: ['', Validators.required],
+          skill: ['', Validators.required],
           rate: ['', Validators.required],
-          linkedIn: ['', Validators.required]
+          linkedin: ['', Validators.required]
       });
 
       this.paymentInfoForm = this._formBuilder.group({
@@ -84,9 +79,28 @@ export class StylistSignupComponent implements OnInit {
             };
         }
 
-        public submitForm(): void {
-            console.log(this.professionalInfoForm.value);
-            this.router.navigate(['login']);
-        }
+    submitForm(): void {
+        const stylistData = Object.assign(this.personalInfoForm.value, this.professionalInfoForm.value);
+        console.log(JSON.stringify(stylistData));
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json'
+        });
+
+        this.stylistService.registerStylist(stylistData).subscribe(
+            response => {
+                if (response.status === 200) {
+                    console.log('Success');
+                    // this.toastr.success('Leave request submitted', 'Success', {progressBar: true, progressAnimation: 'increasing'});
+                }
+            },
+            error => {
+                console.error(error);
+                // this.toastr.error('Could not submit the leave request', 'Failed');
+            }
+        );
+
+        this.router.navigate(['login']);
+    }
+
 
 }

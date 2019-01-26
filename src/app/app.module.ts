@@ -27,6 +27,8 @@ import { SalonService } from './main/app/services/salon-service.service';
 import { AuthenticationService } from './main/app/services/authentication.service';
 import { BasicAuthInterceptor } from './main/app/interceptor/login.interceptor';
 import { Observable } from 'rxjs';
+import { SignupComponent } from './main/app/components/signup/signup.component';
+import {StylistService} from './main/app/services/stylist-service.service';
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
@@ -43,6 +45,7 @@ export class XhrInterceptor implements HttpInterceptor {
         AppComponent,
         DashboardComponent,
         LoginComponent,
+        SignupComponent,
 
     ],
     imports     : [
@@ -87,6 +90,7 @@ export class XhrInterceptor implements HttpInterceptor {
     ],
     providers: [
         SalonService,
+        StylistService,
         AuthenticationService,
         {
 

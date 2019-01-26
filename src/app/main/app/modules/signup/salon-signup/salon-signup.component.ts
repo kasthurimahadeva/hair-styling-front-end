@@ -12,7 +12,6 @@ import { SalonService } from 'app/main/app/services/salon-service.service';
   styleUrls: ['./salon-signup.component.scss']
 })
 export class SalonSignupComponent implements OnInit {
-    accountDetailsForm: FormGroup;
     personalInfoForm: FormGroup;
     paymentInfoForm: FormGroup;
     types = ['Male', 'Female'];
@@ -30,11 +29,6 @@ export class SalonSignupComponent implements OnInit {
 
   ngOnInit(): void {
       this.hideComponents();
-      this.accountDetailsForm = this._formBuilder.group({
-        email: ['', [Validators.required, Validators.email]],
-        password: ['', Validators.required],
-        confirmPassword: ['', Validators.required],
-      });
 
       this.personalInfoForm = this._formBuilder.group({
         salonName: ['', Validators.required],
@@ -46,7 +40,7 @@ export class SalonSignupComponent implements OnInit {
         zip: ['', Validators.required],
         telephoneNo: ['', Validators.required],
         tagLine: ['', Validators.required],
-        webSite: ['', Validators.required]
+        website: ['', Validators.required]
 
     });
 
