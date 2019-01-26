@@ -1,15 +1,14 @@
 <div id="forms" class="page-layout simple fullwidth" fxLayout="column">
 
     <!-- HEADER -->
-    <div class="header accent p-24 h-120" fxLayout="row" fxLayoutAlign="center start">
+    <div class="header accent p-24 h-100" fxLayout="row" fxLayoutAlign="center start">
         <div fxLayout="row" class="heading">
             <div class="logo">
                 <img src="assets/images/logos/logo.png" style="width: 50px; height: 50px">
             </div>
-            <div class="mat-display-1">Sign up</div>
+            <div class="mat-display-1">Profile Details</div>
         </div>
     </div>
-
 
     <div class="content p-36" fxLayoutAlign="center center">
         <div class="horizontal-stepper-wrapper">
@@ -32,46 +31,10 @@
                                 </mat-form-field>
                             </div>
 
-
-                            <mat-form-field appearance="outline" fxFlex="100" class="formInput">
-                                <mat-label>Email</mat-label>
-                                <input matInput formControlName="email" required>
-                                <mat-icon matSuffix class="secondary-text">mail</mat-icon>
-                                <mat-error *ngIf="personalInfoForm.get('email').hasError('required')">
-                                    Email is required
-                                </mat-error>
-                                <mat-error
-                                    *ngIf="!personalInfoForm.get('email').hasError('required') &&
-                                personalInfoForm.get('email').hasError('email')">
-                                    Please enter a valid email address
-                                </mat-error>
-                            </mat-form-field>
-
-                            <div class="row">
-                                <mat-form-field appearance="outline" fxFlex="100" class="formInput">
-                                    <mat-label>Password</mat-label>
-                                    <input type="password" matInput formControlName="password" required>
-                                    <mat-error>Password is required!</mat-error>
-                                </mat-form-field>
-
-                                <mat-form-field appearance="outline" fxFlex="100" class="formInput">
-                                    <mat-label>Confirm password</mat-label>
-                                    <input matInput type="password" formControlName="confirmPassword" required>
-                                    <mat-error>Confirm password is required!</mat-error>
-                                </mat-form-field>
-
-                                <!--<mat-radio-group class="formInput" formControlName="gender" required>-->
-                                    <!--<div class="h3"><mat-label>Gender: </mat-label></div>-->
-                                    <!--<mat-radio-button *ngFor="let type of types" [value]="type" class="gender" required>-->
-                                        <!--{{type}}-->
-                                    <!--</mat-radio-button>-->
-                                <!--</mat-radio-group>-->
-                            </div>
-
                             <div class="row">
                                 <mat-form-field appearance="outline" fxFlex="100" class="formInput">
                                     <mat-label>Country</mat-label>
-                                    <mat-select placeholder="Country">
+                                    <mat-select placeholder="Country" formControlName="country">
                                         <mat-option *ngFor="let country of countries" [value]="country">
                                             {{country}}
                                         </mat-option>
@@ -108,7 +71,7 @@
 
                                 <mat-form-field appearance="outline" fxFlex="100" class="formInput">
                                     <mat-label>Telephone No</mat-label>
-                                    <input matInput formControlName="telephoneNo" required>
+                                    <input matInput formControlName="telephoneNumber" required>
                                     <mat-error>Telephone No is required!</mat-error>
                                 </mat-form-field>
                             </div>
@@ -125,6 +88,13 @@
                     <form fxLayout="column" [formGroup]="professionalInfoForm">
                         <ng-template matStepLabel>Professional Info</ng-template>
                         <div fxFlex="1 0 auto" fxLayout="column">
+
+                            <mat-radio-group class="skills" formControlName="skill" required>
+                                <div class="h3"><mat-label>Skill : </mat-label></div>
+                                <mat-radio-button class="skill" *ngFor="let skill of skills" [value]="skill" required>
+                                    {{skill}}
+                                </mat-radio-button>
+                            </mat-radio-group>
 
                             <mat-form-field appearance="outline" fxFlex="100" class="formInput">
                                 <mat-label>Tag line</mat-label>
@@ -144,15 +114,6 @@
                                 <mat-error>Experience is required!</mat-error>
                             </mat-form-field>
 
-                            <div class="row skills">
-                                <h3>Skills: </h3>
-                                <label formArrayName="skills" *ngFor="let skill of skills;
-                             let i = index">
-                                    <input type="checkbox" class="skill" [formControlName]="i">
-                                    {{skills[i]}}
-                                </label>
-                            </div>
-
                             <div class="row">
                                 <mat-form-field appearance="outline" fxFlex="100" class="formInput">
                                     <mat-label>Rate/day</mat-label>
@@ -162,10 +123,11 @@
 
                                 <mat-form-field appearance="outline" fxFlex="100" class="formInput">
                                     <mat-label>LinkedIn</mat-label>
-                                    <input matInput formControlName="linkedIn" required>
+                                    <input matInput formControlName="linkedin" required>
                                     <mat-error>Linked In is required!</mat-error>
                                 </mat-form-field>
                             </div>
+
                         </div>
 
                         <div fxLayout="row" fxLayoutAlign="center center">

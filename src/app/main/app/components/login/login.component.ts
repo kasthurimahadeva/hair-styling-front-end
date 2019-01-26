@@ -63,19 +63,6 @@ export class LoginComponent implements OnInit {
         };
     }
 
-    openSignupDialog(): void {
-        const dialogRef = this.dialog.open(SignupDialogComponent, {width: '500px', height: '200px'});
-        dialogRef.afterClosed().subscribe(result => {
-            console.log(result);
-            if (result === 'Salon') {
-                this.router.navigate(['salon-signup']);
-            }
-            else if (result === 'Stylist') {
-                this.router.navigate(['stylist-signup']);
-            }
-        });
-    }
-
     login(): void {
         this.authService
             .authenticate({
@@ -86,5 +73,9 @@ export class LoginComponent implements OnInit {
                     console.log('logged in successfully');
                     this.router.navigate(['dashboard']);
                 });
+    }
+
+    signup(): void {
+        this.router.navigate(['signup']);
     }
 }
