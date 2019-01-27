@@ -13,6 +13,8 @@ import { FuseProgressBarModule, FuseSidebarModule, FuseThemeOptionsModule } from
 
 import { fuseConfig } from 'app/fuse-config';
 
+import { JwtModule } from '@auth0/angular-jwt';
+
 import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
 import { SampleModule } from 'app/main/sample/sample.module';
@@ -40,6 +42,10 @@ export class XhrInterceptor implements HttpInterceptor {
     }
 }
 
+export function tokenGetter() {
+    return localStorage.getItem('access_token');
+}
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -53,6 +59,12 @@ export class XhrInterceptor implements HttpInterceptor {
         BrowserAnimationsModule,
         HttpClientModule,
         TranslateModule.forRoot(),
+
+        JwtModule.forRoot({
+            config: {
+                tokenGetter: tokenGetter
+            }
+        }),
 
         // Material moment date module
         MatMomentDateModule,
