@@ -3,11 +3,13 @@ import {NgModule} from '@angular/core';
 import { SearchStylistComponent } from '../modules/salon/search-stylist/search-stylist.component';
 import { StylistDetailsComponent } from '../modules/salon/stylist-details/stylist-details.component';
 import { BookingStylistComponent } from '../modules/salon/booking-stylist/booking-stylist.component';
+import {SearchStylistComponentResolver} from '../modules/salon/search-stylist/search-stylist.component.resolver';
 
 const salonRoutes: Routes = [
     {
-        path: 'salon-search',
-        component: SearchStylistComponent
+        path: 'search-stylist',
+        component: SearchStylistComponent,
+        resolve: {stylistsList: SearchStylistComponentResolver},
     },
     {
         path: 'stylist-details',
@@ -24,5 +26,5 @@ const salonRoutes: Routes = [
     exports: [RouterModule]
 })
 
-export class StylistRoutingModule {
+export class SalonRoutingModule {
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
+import {Stylist} from '../modules/salon/search-stylist/stylist.model';
 
 @Injectable()
 export class StylistService {
@@ -19,8 +20,23 @@ export class StylistService {
     //     return this.http.post('/salon/user-data', token);
     // }
     //
-    // getUserDetails(): Observable<any>{
-    //     return this.http.get('/salon/all');
+    // getStylistsList(): Observable<any>{
+    //     return this.http.get<Stylist>('/api/v1/stylists/');
     // }
+
+    getStylistsList(): Subject<Stylist> {
+        const subject = new Subject<Stylist>();
+
+        this.http.get<Stylist>('/api/v1/stylists/').subscribe(
+            stylists => subject.next(stylists),
+            err => {
+                subject.error(err);
+                // this.toastr.error('Unable to get provider list', 'Fetch failed', {progressBar: true});
+            }
+            ,
+            () => subject.complete()
+        );
+        return subject;
+    }
 
 }

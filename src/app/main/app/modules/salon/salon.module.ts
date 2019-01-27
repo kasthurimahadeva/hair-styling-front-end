@@ -3,11 +3,22 @@ import { CommonModule } from '@angular/common';
 import { SearchStylistComponent } from './search-stylist/search-stylist.component';
 import { StylistDetailsComponent } from './stylist-details/stylist-details.component';
 import { BookingStylistComponent } from './booking-stylist/booking-stylist.component';
+import {SalonRoutingModule} from '../../routing/salon-routing-module';
+import {MatIconModule} from '@angular/material';
+import {FuseSharedModule} from '../../../../../@fuse/shared.module';
+import {SearchStylistComponentResolver} from './search-stylist/search-stylist.component.resolver';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+      SalonRoutingModule,
+
+      MatIconModule,
+
+      FuseSharedModule
   ],
+
+   providers: [SearchStylistComponentResolver],
   declarations: [SearchStylistComponent, StylistDetailsComponent, BookingStylistComponent]
 })
 export class SalonModule { }

@@ -83,6 +83,7 @@ $typography: mat-typography-config(
 @import "src/app/main/app/components/login/login.theme";
 @import "src/app/main/app/modules/stylist/request-list/request-list.theme";
 @import "src/app/main/app/components/signup/signup.theme";
+@import "src/app/main/app/modules/salon/search-stylist/search-stylist.theme";
 
 // Define a mixin for easier access
 @mixin components-theme($theme) {
@@ -93,6 +94,7 @@ $typography: mat-typography-config(
     @include login-theme($theme);
     @include request-list-theme($theme);
     @include signup-theme($theme);
+    @include search-stylist-theme($theme);
 }
 
 // -----------------------------------------------------------------------------------------------------

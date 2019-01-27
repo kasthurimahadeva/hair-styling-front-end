@@ -1,3 +1,42 @@
-<p>
-  search-stylist works!
-</p>
+<div id="search" class="page-layout carded fullwidth">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent h-120"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header p-24 h-20" fxLayout="column" fxLayoutAlign="center center">
+
+            <!-- SEARCH -->
+            <div class="search-wrapper mx-32 mx-md-0">
+                <div class="search" fxFlex fxLayout="row" fxLayoutAlign="center center">
+                    <mat-icon>search</mat-icon>
+                    <input #filter placeholder="Search for a stylist">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div id="filters" class="column">
+                <h3>Filters</h3>
+            </div>
+
+            <div *ngFor="let stylist of stylistsList">
+                <div class="row stylist">
+                    <div class="profile">
+                        <img src="{{stylist.imagePath}}" class="profile">
+                    </div>
+                    <div class="details">
+                        <h4>{{stylist.firstName}}</h4>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
