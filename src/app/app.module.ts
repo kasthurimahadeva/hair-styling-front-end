@@ -62,7 +62,8 @@ export function tokenGetter() {
 
         JwtModule.forRoot({
             config: {
-                tokenGetter: tokenGetter
+                tokenGetter: tokenGetter,
+                blacklistedRoutes: ['/auth/register']
             }
         }),
 

@@ -1,3 +1,4 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {SignupDialogComponent} from '../../modules/signup/signup-dialog/signup-dialog.component';
@@ -20,6 +21,7 @@ export class SignupComponent implements OnInit {
 
   constructor(private dialog: MatDialog,
               private router: Router,
+              private http: HttpClient,
               private _fuseConfigService: FuseConfigService,
               private _formBuilder: FormBuilder) {
       this.hideComponents();
@@ -38,6 +40,24 @@ export class SignupComponent implements OnInit {
         const dialogRef = this.dialog.open(SignupDialogComponent, {width: '500px', height: '200px'});
         dialogRef.afterClosed().subscribe(result => {
             console.log(result);
+            const headers = new HttpHeaders({
+                'content-type': 'application/json'
+                }
+            );
+            this.http.post<any>('/auth/register', 
+            {
+                username: this.signupForm.controls['email'].value, 
+                password: this.signupForm.controls['password'].value, 
+                role: result
+            }, {headers: headers}).subscribe(
+                response => {
+                    console.log(JSON.stringify(response));
+                },
+                error => {
+                    console.error(error);
+                }
+            );
+
             if (result === 'Salon') {
                 this.router.navigate(['salon-signup']);
             }
