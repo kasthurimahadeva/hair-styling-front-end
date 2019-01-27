@@ -5,8 +5,8 @@
     "logLevel": "debug"
   },
 
-  "/api/auth/v1/*": {
-    "target": "http://localhost:4444/auth",
+  "/auth/*": {
+    "target": "http://localhost:4444",
     "secure": false,
     "logLevel": "debug"
   },

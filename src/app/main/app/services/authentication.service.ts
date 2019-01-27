@@ -15,40 +15,53 @@ export class AuthenticationService {
     constructor(private http: HttpClient, private router: Router) {}
 
     authenticate(credentials, callback): any {
+
         const headers = new HttpHeaders(
-            credentials
-                ? {
-                    authorization:
-                        // `Basic ${btoa(`${credentials.username} : ${credentials.password}`)}`
-                          'Basic ' + btoa(credentials.username + ':' + credentials.password)
-                  }
-                : {}
+            {
+            'content-type': 'application/json'
+            }
         );
 
-        this.http.get<any>('/api/auth/v1/user', { headers: headers }).subscribe(
+        this.http.post<any>('/auth', {username: credentials.username, password: credentials.password}, {headers: headers, observe: 'response'}).subscribe(
             response => {
-                console.log(JSON.stringify(response));
-                if (response['name']) {
+                const token = response.headers.get('Authorization');
+                console.log(token);
+                if (token) {
+                    localStorage.setItem('access_token', token);
                     this.authenticated = true;
-                    localStorage.setItem('principal', JSON.stringify(response));
-                    localStorage.setItem('authenticated', 'true');
-                    localStorage.setItem(
-                        'currentUser',
-                        btoa(credentials.username + ':' + credentials.password)
-                    );
-                } else {
-                    localStorage.setItem('authenticated', 'false');
-                    this.authenticated = false;
                 }
                 return callback && callback();
             },
             error => {
                 console.error(error);
-                // // this.toastr.error('Username or password is incorrect', 'Login failed', {
-                //     progressBar: true
-                // });
             }
+
         );
+
+        // this.http.get<any>('/api/auth/v1/user', { headers: headers }).subscribe(
+        //     response => {
+        //         console.log(JSON.stringify(response));
+        //         if (response['name']) {
+        //             this.authenticated = true;
+        //             localStorage.setItem('principal', JSON.stringify(response));
+        //             localStorage.setItem('authenticated', 'true');
+        //             localStorage.setItem(
+        //                 'currentUser',
+        //                 btoa(credentials.username + ':' + credentials.password)
+        //             );
+        //         } else {
+        //             localStorage.setItem('authenticated', 'false');
+        //             this.authenticated = false;
+        //         }
+        //         return callback && callback();
+        //     },
+        //     error => {
+        //         console.error(error);
+        //         // // this.toastr.error('Username or password is incorrect', 'Login failed', {
+        //         //     progressBar: true
+        //         // });
+        //     }
+        // );
     }
 
     getLoggedInUserName(): string {
@@ -66,6 +79,7 @@ export class AuthenticationService {
             .post(environment.server + 'logout', {})
             ._finally(() => {
                 this.authenticated = false;
+                localStorage.removeItem('access_token');
                 localStorage.removeItem('principal');
                 localStorage.removeItem('authenticated');
                 localStorage.removeItem('currentUser');
