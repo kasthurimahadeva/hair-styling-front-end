@@ -12,7 +12,7 @@ export class StylistService {
     constructor( private http: HttpClient ) { }
 
     registerStylist(token: any): Observable<any>{
-        return this.http.post(rootStylistsUrl, token);
+        return this.http.post(`${rootStylistsUrl}create`, token);
     }
 
     // searchQuery(token: any): Observable<any>{
@@ -27,7 +27,7 @@ export class StylistService {
     searchStylistsBySkill(skill: String): Array<Stylist> {
         let stylistsList = [];
 
-        this.http.get<Array<Stylist>>(`${rootStylistsUrl} search/` + skill).subscribe(
+        this.http.get<Array<Stylist>>(`${rootStylistsUrl}search/${skill}`).subscribe(
             stylists => stylistsList = stylists
         );
         return stylistsList;
