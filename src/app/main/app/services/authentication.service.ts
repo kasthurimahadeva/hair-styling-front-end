@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/finally';
@@ -24,10 +25,20 @@ export class AuthenticationService {
 
         this.http.post<any>('/auth', {username: credentials.username, password: credentials.password}, {headers: headers, observe: 'response'}).subscribe(
             response => {
-                const token = response.headers.get('Authorization');
+                const token = response.headers.get('Authorization').substring(7);
+                
                 console.log(token);
                 if (token) {
-                    localStorage.setItem('access_token', token.substring(7));
+                    const helper = new JwtHelperService();
+                    const decodedToken = helper.decodeToken(token);
+                    const expirationDate = helper.getTokenExpirationDate(token);
+                    const isExpired = helper.isTokenExpired(token);
+                    localStorage.setItem('access_token', token);
+                    localStorage.setItem('user', JSON.stringify(decodedToken));
+                    localStorage.setItem('role', decodedToken.authorities[0].split('_')[1]);
+                    console.log(expirationDate);
+                    console.log(isExpired);
+                    console.log(decodedToken);
                     this.authenticated = true;
                 }
                 return callback && callback();
