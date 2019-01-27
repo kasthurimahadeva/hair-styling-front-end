@@ -71,7 +71,7 @@ export class LoginComponent implements OnInit {
                 }
                 , () => {
                     console.log('logged in successfully');
-                    this.router.navigate(['dashboard']);
+                    this.router.navigate(['search-stylist']);
                 });
     }
 
