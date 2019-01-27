@@ -64,7 +64,8 @@ export function tokenGetter() {
             config: {
                 tokenGetter: tokenGetter,
                 blacklistedRoutes: ['/auth/register',
-                '/api/v1/stylists/create'
+                '/api/v1/stylists/create',
+                '/auth'
             ]
             }
         }),
