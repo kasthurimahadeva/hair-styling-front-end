@@ -20,9 +20,15 @@ export class StylistService {
     //     return this.http.post('/salon/user-data', token);
     // }
     //
-    // getStylistsList(): Observable<any>{
-    //     return this.http.get<Stylist>('/api/v1/stylists/');
-    // }
+
+    searchStylistsBySkill(skill: String): Array<Stylist> {
+        let stylistsList = [];
+
+        this.http.get<Array<Stylist>>('/api/v1/stylists/search/' + skill).subscribe(
+            stylists => stylistsList = stylists
+        );
+        return stylistsList;
+    }
 
     getStylistsList(): Subject<Stylist> {
         const subject = new Subject<Stylist>();
