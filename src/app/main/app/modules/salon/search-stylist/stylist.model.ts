@@ -1,18 +1,20 @@
-export class Profile {
+export class Stylist {
     id: String;
     firstName: String;
     lastName: String;
     description: String;
-    email: String;
-    telephoneNo: String;
+    telephoneNumber: String;
     country: String;
     state: String;
     city: String;
     street: String;
-    skills: Array<String>;
+    skill: String;
     rate: String;
     bankName: String;
     branch: String;
     name: String;
     accountNo: Number;
+    tagLine: String;
+    linkedin: String;
+    imagePath: String;
 }
