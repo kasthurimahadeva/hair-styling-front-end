@@ -10,7 +10,7 @@ export class SalonService {
   constructor( private http: HttpClient ) { }
  
   registerSalon(token: any): Observable<any>{
-    return this.http.post('/api/v1/salons/', token);
+    return this.http.post('/api/v1/salons/create', token);
   }
  
   searchQuery(token: any): Observable<any>{

@@ -8,8 +8,6 @@ import { RequestListComponent } from './request-list/request-list.component';
 import {FuseSharedModule} from '../../../../../@fuse/shared.module';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
-// import { StarRatingModule } from 'angular-star-rating';
-import { RequestListDetailsComponent } from './request-list-details/request-list-details.component';
 
 @NgModule({
   imports: [
@@ -25,11 +23,10 @@ import { RequestListDetailsComponent } from './request-list-details/request-list
       MatPaginatorModule,
       BrowserModule,
       FormsModule,
-      // StarRatingModule.forRoot(),
       MatListModule,
 
       FuseSharedModule
   ],
-  declarations: [ProfileComponent, RequestListComponent, RequestListDetailsComponent]
+  declarations: [ProfileComponent, RequestListComponent]
 })
 export class StylistModule { }
