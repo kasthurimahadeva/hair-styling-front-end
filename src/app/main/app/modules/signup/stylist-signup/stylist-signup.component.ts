@@ -42,7 +42,7 @@ export class StylistSignupComponent implements OnInit {
       });
 
       this.professionalInfoForm = this._formBuilder.group({
-          tagLine: ['', Validators.required],
+          tagline: ['', Validators.required],
           description: ['', Validators.required],
           experience: ['', Validators.required],
           skill: ['', Validators.required],

@@ -27,7 +27,7 @@ export class AuthenticationService {
                 const token = response.headers.get('Authorization');
                 console.log(token);
                 if (token) {
-                    localStorage.setItem('access_token', token);
+                    localStorage.setItem('access_token', token.substring(7));
                     this.authenticated = true;
                 }
                 return callback && callback();

@@ -14,7 +14,7 @@ export class Stylist {
     branch: String;
     name: String;
     accountNo: Number;
-    tagLine: String;
+    tagline: String;
     linkedin: String;
     imagePath: String;
 }

@@ -39,7 +39,7 @@ export class SalonSignupComponent implements OnInit {
         street: ['', Validators.required],
         zip: ['', Validators.required],
         telephoneNo: ['', Validators.required],
-        tagLine: ['', Validators.required],
+        tagline: ['', Validators.required],
         website: ['', Validators.required]
 
     });
