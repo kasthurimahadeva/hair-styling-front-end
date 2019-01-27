@@ -16,5 +16,4 @@ export class SearchStylistComponentResolver implements Resolve<Stylist> {
         | Stylist {
         return this.stylistService.getStylistsList().pipe(map(stylistsList => stylistsList));
     }
-
 }

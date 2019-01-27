@@ -1,42 +1,116 @@
 <div id="search" class="page-layout carded fullwidth">
 
     <!-- TOP BACKGROUND -->
-    <div class="top-bg accent h-120"></div>
+    <div class="top-bg accent"></div>
     <!-- / TOP BACKGROUND -->
 
     <!-- CENTER -->
     <div class="center">
 
         <!-- HEADER -->
-        <div class="header p-24 h-20" fxLayout="column" fxLayoutAlign="center center">
+        <div class="header accent" fxLayout="column" fxLayoutAlign="center center">
 
             <!-- SEARCH -->
             <div class="search-wrapper mx-32 mx-md-0">
                 <div class="search" fxFlex fxLayout="row" fxLayoutAlign="center center">
                     <mat-icon>search</mat-icon>
-                    <input #filter placeholder="Search for a stylist">
+                    <input placeholder="Search for a stylist" (keyup)="getInput($event)" (keydown.enter)="search()">
                 </div>
             </div>
         </div>
 
-        <div class="row">
-            <div id="filters" class="column">
-                <h3>Filters</h3>
-            </div>
+        <!-- CONTENT CARD -->
+        <div class="content-card">
 
-            <div *ngFor="let stylist of stylistsList">
-                <div class="row stylist">
-                    <div class="profile">
-                        <img src="{{stylist.imagePath}}" class="profile">
-                    </div>
-                    <div class="details">
-                        <h4>{{stylist.firstName}}</h4>
-                    </div>
-                </div>
+            <mat-table class="stylists-table"
+                       #table [dataSource]="dataSource"
+                       matSort
+                       [@animateStagger]="{value:'50'}"
+                       fusePerfectScrollbar>
 
-            </div>
+                <ng-container matColumnDef="image">
+                    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                    <mat-cell *matCellDef="let stylist">
+                        <div class="image text-truncate">
+                            <img src="{{stylist.imagePath}}">
+                        </div>
+                    </mat-cell>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+                    <mat-cell *matCellDef="let stylist">
+                        <p class="text-truncate">{{stylist.firstName + " " + stylist.lastName}}</p>
+                    </mat-cell>
+                </ng-container>
+
+                <!-- Price Column -->
+                <ng-container matColumnDef="skill">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-xs>Skill</mat-header-cell>
+                    <mat-cell *matCellDef="let stylist" fxHide fxShow.gt-xs>
+                        <p class="skill text-truncate">
+                            {{stylist.skill}}
+                        </p>
+                    </mat-cell>
+                </ng-container>
+
+                <!-- Quantity Column -->
+                <ng-container matColumnDef="rate">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>Rate</mat-header-cell>
+                    <mat-cell *matCellDef="let stylist" fxHide fxShow.gt-sm>
+                        <p class="rate text-truncate">
+                            {{stylist.rate | currency :'USD':'symbol'}}
+                        </p>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="country">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>Country</mat-header-cell>
+                    <mat-cell *matCellDef="let stylist" fxHide fxShow.gt-sm>
+                        <p class="rate text-truncate">
+                            {{stylist.country}}
+                        </p>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="city">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>City</mat-header-cell>
+                    <mat-cell *matCellDef="let stylist" fxHide fxShow.gt-sm>
+                        <p class="rate text-truncate">
+                            {{stylist.city}}
+                        </p>
+                    </mat-cell>
+                </ng-container>
+
+                <!-- Active Column -->
+                <ng-container matColumnDef="action">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-xs>Action</mat-header-cell>
+                    <mat-cell *matCellDef="let stylist" fxHide fxShow.gt-xs>
+                        <p class="action text-truncate">
+                            <button mat-raised-button color="accent">View</button>
+                        </p>
+                    </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></mat-header-row>
+
+                <mat-row *matRowDef="let styist; columns: displayedColumns;"
+                         class="stylist"
+                         matRipple>
+                </mat-row>
+
+            </mat-table>
+
+            <!--<mat-paginator #paginator-->
+                           <!--[length]="dataSource.filteredData.length"-->
+                           <!--[pageIndex]="0"-->
+                           <!--[pageSize]="10"-->
+                           <!--[pageSizeOptions]="[5, 10, 25, 100]">-->
+            <!--</mat-paginator>-->
+
         </div>
-
-
+        <!-- / CONTENT CARD -->
     </div>
+    <!-- / CENTER -->
 </div>

@@ -3,7 +3,6 @@ import {fuseAnimations} from '../../../../../../@fuse/animations';
 import {FuseConfigService} from '../../../../../../@fuse/services/config.service';
 import {Stylist} from './stylist.model';
 import {StylistService} from '../../../services/stylist-service.service';
-import {Observable} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
@@ -14,6 +13,8 @@ import {ActivatedRoute} from '@angular/router';
     encapsulation: ViewEncapsulation.None
 })
 export class SearchStylistComponent implements OnInit {
+    dataSource = [];
+    displayedColumns = ['image', 'name', 'skill', 'rate', 'country', 'city', 'action'];
     stylistsList = [];
     images = ['Abbott.jpg',
     'alice.jpg' ,
@@ -52,10 +53,13 @@ export class SearchStylistComponent implements OnInit {
     'Velazquez.jpg' ,
     'vincent.jpg'];
 
+    input = '';
+
   constructor(private _fuseConfigService: FuseConfigService,
               private stylistService: StylistService,
               private route: ActivatedRoute) {
     this.hideComponents();
+    console.log(this.input);
   }
 
 
@@ -63,6 +67,7 @@ export class SearchStylistComponent implements OnInit {
       this.hideComponents();
       this.stylistsList = this.route.snapshot.data['stylistsList'];
       this.stylistsList.map((stylist) => this.addImage(stylist));
+      this.dataSource = this.stylistsList;
       console.log(this.stylistsList);
   }
 
@@ -89,6 +94,16 @@ export class SearchStylistComponent implements OnInit {
       stylist.imagePath = '/assets/images/avatars/' + this.images[this.stylistsList.indexOf(stylist)];
     }
 
+
+    getInput(event: any): void {
+        this.input = event.target.value;
+    }
+
+    search(): void {
+        console.log(this.input);
+        this.dataSource = this.stylistService.searchStylistsBySkill(this.input);
+
+    }
 
 }
 
