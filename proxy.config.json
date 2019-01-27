@@ -1,19 +1,25 @@
 {
   "/api/v1/salons/*": {
-    "target": "http://localhost:8080",
+    "target": "http://localhost:4444/account",
     "secure": false,
     "logLevel": "debug"
   },
 
   "/api/auth/v1/*": {
-    "target": "http://localhost:8081",
+    "target": "http://localhost:4444/auth",
     "secure": false,
     "logLevel": "debug"
   },
 
     "/api/v1/stylists/*": {
-        "target": "http://localhost:8080",
+        "target": "http://localhost:4444/account",
         "secure": false,
         "logLevel": "debug"
-    }
+    },
+    "/api/booking/v1/*": {
+      "target": "http://localhost:4444/booking",
+      "secure": false,
+      "logLevel": "debug"
+  }
+
 }

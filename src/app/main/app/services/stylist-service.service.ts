@@ -3,13 +3,16 @@ import {HttpClient} from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
 import {Stylist} from '../modules/salon/search-stylist/stylist.model';
 
+const rootStylistsUrl = '/api/v1/stylists/';
+
 @Injectable()
 export class StylistService {
+
 
     constructor( private http: HttpClient ) { }
 
     registerStylist(token: any): Observable<any>{
-        return this.http.post('/api/v1/stylists/', token);
+        return this.http.post(rootStylistsUrl, token);
     }
 
     // searchQuery(token: any): Observable<any>{
@@ -24,7 +27,7 @@ export class StylistService {
     searchStylistsBySkill(skill: String): Array<Stylist> {
         let stylistsList = [];
 
-        this.http.get<Array<Stylist>>('/api/v1/stylists/search/' + skill).subscribe(
+        this.http.get<Array<Stylist>>(`${rootStylistsUrl} search/` + skill).subscribe(
             stylists => stylistsList = stylists
         );
         return stylistsList;
@@ -33,7 +36,7 @@ export class StylistService {
     getStylistsList(): Subject<Stylist> {
         const subject = new Subject<Stylist>();
 
-        this.http.get<Stylist>('/api/v1/stylists/').subscribe(
+        this.http.get<Stylist>(rootStylistsUrl).subscribe(
             stylists => subject.next(stylists),
             err => {
                 subject.error(err);
