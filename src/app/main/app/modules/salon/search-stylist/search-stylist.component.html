@@ -88,7 +88,7 @@
                     <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-xs>Action</mat-header-cell>
                     <mat-cell *matCellDef="let stylist" fxHide fxShow.gt-xs>
                         <p class="action text-truncate">
-                            <button mat-raised-button color="accent">View</button>
+                            <button mat-raised-button color="accent" [routerLink]="'/booking-stylist/' + stylist.stylistId">Book</button>
                         </p>
                     </mat-cell>
                 </ng-container>

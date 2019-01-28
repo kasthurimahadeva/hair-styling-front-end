@@ -1,3 +1,27 @@
-<p>
-  booking-stylist works!
-</p>
+<div id="profile" class="page-layout simple fullwidth" fxLayout="column">
+
+<!-- HEADER -->
+    <div class="header accent p-24 h-100" fxLayout="row" fxLayoutAlign="center start">
+        <div fxLayout="row">
+            <div class="logo">
+                <img src="assets/images/logos/logo.png" style="width: 50px; height: 50px; margin-right: 20px;">
+            </div>
+            <div class="mat-display-1">Booking</div>
+        </div>
+    </div>
+    <div class="content p-36" fxLayoutAlign="center start">
+
+        <form fxLayout="column" class="form" [formGroup]="bookingForm">
+            <mat-form-field appearance="outline" fxFlex="50" class="date">
+                <mat-label>Booking Date</mat-label>
+                <input matInput (dateInput) = "getStartDate($event)" [matDatepicker] ="startPicker"
+                       [min]="startMinDate" formControlName="bookingDate" required>
+                <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+                <mat-datepicker #startPicker></mat-datepicker>
+                <mat-error>Start date is required</mat-error>
+            </mat-form-field>
+
+            <button mat-raised-button class="button" [disabled]="bookingForm.invalid" (click)="book()" color="accent">Book Now</button>
+        </form>
+    </div>
+</div>

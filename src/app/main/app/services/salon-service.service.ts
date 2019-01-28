@@ -3,6 +3,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
+import {SalonModel} from '../modules/salon/booking-stylist/salon.model';
+import {Stylist} from '../modules/salon/search-stylist/stylist.model';
  
 @Injectable()
 export class SalonService {
@@ -13,16 +15,13 @@ export class SalonService {
     return this.http.post('/api/v1/salons/create', token);
   }
  
-  searchQuery(token: any): Observable<any>{
-    return this.http.post('/salon/search-query', token);
-  }
- 
-  setUserDetails(token: any): Observable<any>{
-    return this.http.post('/salon/user-data', token);
-  }
- 
-  getUserDetails(): Observable<any>{
-    return this.http.get('/salon/all');
+  getSalonDetails(email: String): SalonModel {
+      let salon;
+
+      this.http.get<SalonModel>(`/api/v1/salons/find/${email}`).subscribe(
+          salonDetails => salon = salonDetails
+      );
+      return salon;
   }
  
 }

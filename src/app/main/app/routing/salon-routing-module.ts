@@ -11,7 +11,7 @@ const salonRoutes: Routes = [
         resolve: {stylistsList: SearchStylistComponentResolver},
     },
     {
-        path: 'booking-stylist',
+        path: 'booking-stylist/:stylistId',
         component: BookingStylistComponent
     }
 ];
