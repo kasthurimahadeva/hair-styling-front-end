@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
 import {Stylist} from '../modules/salon/search-stylist/stylist.model';
+import {SalonModel} from '../modules/salon/booking-stylist/salon.model';
 
 const rootStylistsUrl = '/api/v1/stylists/';
 
@@ -46,6 +47,15 @@ export class StylistService {
             () => subject.complete()
         );
         return subject;
+    }
+
+    getStylistDetails(email: String): Stylist {
+        let stylist;
+
+        this.http.get<Stylist>(`/api/v1/stylists/find/${email}`).subscribe(
+            stylistDetails => stylist = stylistDetails
+        );
+        return stylist;
     }
 
 }

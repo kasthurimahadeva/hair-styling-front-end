@@ -31,6 +31,7 @@ import { BasicAuthInterceptor } from './main/app/interceptor/login.interceptor';
 import { Observable } from 'rxjs';
 import { SignupComponent } from './main/app/components/signup/signup.component';
 import {StylistService} from './main/app/services/stylist-service.service';
+import {BookingService} from './main/app/services/booking.service';
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
@@ -108,6 +109,7 @@ export function tokenGetter() {
         SalonService,
         StylistService,
         AuthenticationService,
+        BookingService,
         {
 
             provide: HTTP_INTERCEPTORS,

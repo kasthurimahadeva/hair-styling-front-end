@@ -71,7 +71,14 @@ export class LoginComponent implements OnInit {
                 }
                 , () => {
                     console.log('logged in successfully');
-                    this.router.navigate(['search-stylist']);
+                    const role = localStorage.getItem('role');
+                    if (role === 'salon') {
+                        this.router.navigate(['search-stylist']);
+                    }
+
+                    else if (role === 'stylist') {
+                        this.router.navigate(['stylist-request']);
+                    }
                 });
     }
 

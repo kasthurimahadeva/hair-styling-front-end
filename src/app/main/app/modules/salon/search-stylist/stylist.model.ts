@@ -1,5 +1,5 @@
 export class Stylist {
-    id: String;
+    stylistId: String;
     firstName: String;
     lastName: String;
     description: String;

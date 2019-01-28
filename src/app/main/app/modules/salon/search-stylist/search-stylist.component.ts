@@ -3,7 +3,7 @@ import {fuseAnimations} from '../../../../../../@fuse/animations';
 import {FuseConfigService} from '../../../../../../@fuse/services/config.service';
 import {Stylist} from './stylist.model';
 import {StylistService} from '../../../services/stylist-service.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-search-stylist',
@@ -57,7 +57,8 @@ export class SearchStylistComponent implements OnInit {
 
   constructor(private _fuseConfigService: FuseConfigService,
               private stylistService: StylistService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private router: Router) {
     this.hideComponents();
     console.log(this.input);
   }
