@@ -4,6 +4,7 @@ import {MatDatepickerInputEvent} from '@angular/material';
 import {SalonService} from '../../../services/salon-service.service';
 import {BookingService} from '../../../services/booking.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {FuseConfigService} from '../../../../../../@fuse/services/config.service';
 
 @Component({
   selector: 'app-booking-stylist',
@@ -43,9 +44,13 @@ export class BookingStylistComponent implements OnInit {
                 private salonService: SalonService,
                 private bookingService: BookingService,
                 private route: ActivatedRoute,
-                private router: Router) { }
+                private router: Router,
+                private _fuseConfigService: FuseConfigService) {
+        this.hideComponents();
+    }
 
   ngOnInit(): void{
+        this.hideComponents();
         this.bookingForm = this._formBuilder.group({
             bookingDate: ['', Validators.required]
         });
@@ -67,6 +72,24 @@ export class BookingStylistComponent implements OnInit {
 
   }
 
+    private hideComponents(): void {
+        this._fuseConfigService.config = {
+            layout: {
+                navbar: {
+                    hidden: true
+                },
+                toolbar: {
+                    hidden: true
+                },
+                footer: {
+                    hidden: true
+                },
+                sidepanel: {
+                    hidden: true
+                }
+            }
+        };
+    }
 
 
 }
